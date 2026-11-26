@@ -5,7 +5,7 @@ const factory=(Base)=>class extends Base{
 renderBlock(container){
 container.replaceChildren();
 const date=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
-const preview=location.hostname==='dtr-1.github.io'&&new URLSearchParams(location.search).has('preview');
+const preview=true; // Temporary Staffbase test mode
 if(!preview&&(date<'2026-12-01'||date>'2026-12-24'))return;
 const key='em-advent-popup-'+date;
 try{if(!preview&&localStorage.getItem(key))return;}catch{}
@@ -22,5 +22,5 @@ const keyboard=e=>{if(e.key==='Escape')close();if(e.key==='Tab'){const items=[..
 root.querySelector('button').onclick=close;root.querySelector('a').addEventListener('click',close);root.querySelector('.back').onclick=e=>{};document.addEventListener('keydown',keyboard);root.querySelector('button').focus();
 }
 };
-window.defineBlock({blockDefinition:{name:'euromaster-advent-popup',label:'EUROMASTER Adventskalender Popup',factory,attributes:[],blockLevel:'block',configurationSchema:{type:'object',properties:{}},uiSchema:{}},author:'EUROMASTER',version:'1.2.0'});
+window.defineBlock({blockDefinition:{name:'euromaster-advent-popup',label:'EUROMASTER Adventskalender Popup',factory,attributes:[],blockLevel:'block',configurationSchema:{type:'object',properties:{}},uiSchema:{}},author:'EUROMASTER',version:'1.3.0'});
 })();
